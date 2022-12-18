@@ -8,6 +8,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -33,14 +34,34 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun TicTacToeScreen() {
-    // true = players turn, false = AI's turn
+    // true = players turn, false = AI's turn, null = no move
     val playerTurn = remember { mutableStateOf(true) }
+    val moves = remember {
+        mutableStateListOf<Boolean?>(
+            true,
+            null,
+            false,
+            null,
+            null,
+            false,
+            true,
+            null,
+            null
+        )
+    }
 
     Header(playerTurn.value)
+
+    Board(moves)
 
 }
 
 @Composable
 fun Header(playerTurn: Boolean) {
+
+}
+
+@Composable
+fun Board(moves: List<Boolean?>) {
 
 }
