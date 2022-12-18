@@ -8,6 +8,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.orlandonunez.tictactoe.ui.theme.TicTacToeTheme
@@ -31,5 +33,14 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun TicTacToeScreen() {
+    // true = players turn, false = AI's turn
+    val playerTurn = remember { mutableStateOf(true) }
+
+    Header(playerTurn.value)
+
+}
+
+@Composable
+fun Header(playerTurn: Boolean) {
 
 }
