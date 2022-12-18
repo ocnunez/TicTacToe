@@ -59,7 +59,7 @@ fun TicTacToeScreen() {
 
         Text(
             text = "Tic Tac Toe",
-            fontSize = 30.sp,
+            fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(16.dp)
         )
@@ -106,13 +106,46 @@ fun Header(playerTurn: Boolean) {
                     .align(Alignment.Center)
             )
         }
-
-
     }
 
 }
 
 @Composable
 fun Board(moves: List<Boolean?>) {
+    Box(
+        modifier = Modifier
+            .aspectRatio(1f)
+            .padding(32.dp)
+            .background(Color.LightGray)
+    ) {
+        Column(
+            verticalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier.fillMaxSize()) {
+            Row(
+                modifier = Modifier
+                    .height(2.dp)
+                    .fillMaxWidth()
+                    .background(Color.Black)) {}
+            Row(
+                modifier = Modifier
+                    .height(2.dp)
+                    .fillMaxWidth()
+                    .background(Color.Black)) {}
+            }
+            Row(
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                modifier = Modifier.fillMaxSize()
+            ) {
+                Column(modifier = Modifier
+                    .width(2.dp)
+                    .fillMaxHeight()
+                    .background(Color.Black)) {}
+                Column(modifier = Modifier
+                    .width(2.dp)
+                    .fillMaxHeight()
+                    .background(Color.Black)) {}
+        }
+
+    }
 
 }
