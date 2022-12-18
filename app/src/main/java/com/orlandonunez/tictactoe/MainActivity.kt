@@ -3,6 +3,7 @@ package com.orlandonunez.tictactoe
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
@@ -15,6 +16,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -120,32 +123,71 @@ fun Board(moves: List<Boolean?>) {
     ) {
         Column(
             verticalArrangement = Arrangement.SpaceEvenly,
-            modifier = Modifier.fillMaxSize()) {
+            modifier = Modifier.fillMaxSize()
+        ) {
             Row(
                 modifier = Modifier
                     .height(2.dp)
                     .fillMaxWidth()
-                    .background(Color.Black)) {}
+                    .background(Color.Black)
+            ) {}
             Row(
                 modifier = Modifier
                     .height(2.dp)
                     .fillMaxWidth()
-                    .background(Color.Black)) {}
-            }
-            Row(
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                modifier = Modifier.fillMaxSize()
-            ) {
-                Column(modifier = Modifier
-                    .width(2.dp)
-                    .fillMaxHeight()
-                    .background(Color.Black)) {}
-                Column(modifier = Modifier
-                    .width(2.dp)
-                    .fillMaxHeight()
-                    .background(Color.Black)) {}
+                    .background(Color.Black)
+            ) {}
         }
-
+        Row(
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Column(
+                modifier = Modifier
+                    .width(2.dp)
+                    .fillMaxHeight()
+                    .background(Color.Black)
+            ) {}
+            Column(
+                modifier = Modifier
+                    .width(2.dp)
+                    .fillMaxHeight()
+                    .background(Color.Black)
+            ) {}
+        }
+        Column(modifier = Modifier.fillMaxSize()) {
+            for (i in 0..2) {
+                Row(modifier = Modifier.weight(1f)) {
+                    for (j in 0..2) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            GetComposableFromMove(move = moves[i * 3 + j])
+                        }
+                    }
+                }
+            }
+        }
     }
+}
 
+@Composable
+fun GetComposableFromMove(move: Boolean?) {
+    when (move) {
+        true -> Image(
+            painter = painterResource(id = R.drawable.ic_x),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            colorFilter = ColorFilter.tint(Color.Blue)
+        )
+        false -> Image(
+            painter = painterResource(id = R.drawable.ic_o),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            colorFilter = ColorFilter.tint(Color.Green)
+        )
+        null -> Image(
+            painter = painterResource(id = R.drawable.ic_null),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize()
+        )
+    }
 }
